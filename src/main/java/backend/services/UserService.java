@@ -1,4 +1,4 @@
-package service;
+package backend.services;
 
 
 import java.util.Optional;
@@ -7,20 +7,16 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import entity.UserEntity;
-import repository.UserRepository;
+import backend.entities.UserEntity;
+import backend.repositories.UserRepository;
 
 
 @Service
 public class UserService {
    
-    
+    @Autowired
     private UserRepository userRepository;
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-   
+    
 
 
     public Optional<UserEntity> findUserById(Long id) {

@@ -1,33 +1,32 @@
-package controller;
+package backend.controllers;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import entity.EventEntity;
-import entity.UserEntity;
-import service.EventService;
-
+import backend.entities.UserEntity;
+import backend.services.UserService;
 
 @RestController
-@RequestMapping("/api/events")
-public class EventController {
-
+@RequestMapping("/api/users")
+public class UserController {
 
     @Autowired
-    private final EventService eventService;
-
+    private UserService userService;
     
 
     @GetMapping("/{id}")
-    public ResponseEntity<EventEntity> getEventById(@PathVariable Long id) {
-        return eventService.findEventById(id)
+    public ResponseEntity<UserEntity> getUserById(@PathVariable Long id) {
+        return userService.findUserById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Additional methods for handling events can be added here
-}
 
+}
 

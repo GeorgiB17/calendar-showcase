@@ -1,4 +1,4 @@
-package service;
+package backend.services;
 
 
 import java.util.Optional;
@@ -7,15 +7,18 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import entity.EventEntity;
-import entity.UserEntity;
-import repository.EventRepository;
+import backend.entities.EventEntity;
+import backend.entities.UserEntity;
+import backend.repositories.EventRepository;
 
 @Service
 public class EventService {
+   
     @Autowired
-    private EventRepository eventRepository;
+    private  EventRepository eventRepository;
     
+
+
     public Optional<EventEntity> findEventById(Long id) {
         return eventRepository.findById(id);
     }

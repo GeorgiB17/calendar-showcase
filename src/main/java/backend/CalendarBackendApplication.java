@@ -1,4 +1,4 @@
-
+package backend;
 
 
 import org.springframework.boot.SpringApplication;
