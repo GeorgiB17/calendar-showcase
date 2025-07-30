@@ -14,8 +14,14 @@ import repository.UserRepository;
 @Service
 public class UserService {
    
-    @Autowired
+    
     private UserRepository userRepository;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+   
+
 
     public Optional<UserEntity> findUserById(Long id) {
         return userRepository.findById(id);
