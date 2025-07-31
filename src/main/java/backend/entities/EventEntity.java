@@ -3,6 +3,7 @@ package backend.entities;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +20,7 @@ public class EventEntity {
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-@JoinColumn(name = "event_id")
+@Column(name = "event_id")
 private Long id;
 private String title;
 private String description;
