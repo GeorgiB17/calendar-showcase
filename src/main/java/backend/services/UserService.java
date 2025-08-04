@@ -1,6 +1,7 @@
 package backend.services;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -30,6 +31,14 @@ public class UserService {
         user.setPassword(password);
         userRepository.save(user);
     }
-    
+    public List<UserEntity> findAllUsers() {
+        return userRepository.findAll();
+    }
+    public Optional<UserEntity> findUserById(Long id) {
+        return userRepository.findById(id);
+    }
+    public Optional<UserEntity> findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 
 }

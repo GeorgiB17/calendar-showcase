@@ -2,7 +2,6 @@ package backend.controllers;
 
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -26,14 +25,7 @@ public class UserController {
 
     @GetMapping("/all")
     public ResponseEntity<List<UserEntity>> getAllUsers() {
-     List<UserEntity> users = new ArrayList<>();
-        userService.findAllUsers().forEach(users::add);
-
-
-        if (users.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(users);
+     return ResponseEntity.ok(userService.findAllUsers());
 
         
     }

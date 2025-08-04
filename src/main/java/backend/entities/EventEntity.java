@@ -1,7 +1,7 @@
 package backend.entities;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,7 +38,7 @@ private UserEntity creator;
     joinColumns = @JoinColumn(name = "event_id"),
     inverseJoinColumns = @JoinColumn(name = "user_id")
 )
-private Set<UserEntity> participants;
+private List<UserEntity> participants;
 
 public EventEntity() {
 }
@@ -88,10 +88,10 @@ public UserEntity getCreator() {
 public void setCreator(UserEntity creator) {
     this.creator = creator;
 }
-public Set<UserEntity> getParticipants() {
+public List<UserEntity> getParticipants() {
     return participants;
 }
-public void setParticipants(Set<UserEntity> participants) {
+public void setParticipants(List<UserEntity> participants) {
     this.participants = participants;
 }
 
