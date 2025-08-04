@@ -1,12 +1,13 @@
 package backend.repositories;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import backend.entities.EventEntity;
 import backend.entities.UserEntity;
+
 @Repository
 public interface EventRepository extends JpaRepository<EventEntity, Long> {
 
@@ -16,6 +17,6 @@ public interface EventRepository extends JpaRepository<EventEntity, Long> {
 
     
 
-    Set<EventEntity> findByCreator(UserEntity creator);
-    Set<EventEntity> findByParticipantsContains(UserEntity participant);
+    List<EventEntity> findByCreator(UserEntity creator);
+    List<EventEntity> findByParticipantsContains(UserEntity participant);
 }

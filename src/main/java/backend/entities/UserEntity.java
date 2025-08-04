@@ -18,7 +18,6 @@ import jakarta.persistence.Table;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     @Column(name = "user_id")
     private Long id;
     private String username;
@@ -90,6 +89,8 @@ public class UserEntity {
     public void setEventsParticipated(Set<EventEntity> eventsParticipated) {
         this.eventsParticipated = eventsParticipated;
     }
+
+
    
 
 

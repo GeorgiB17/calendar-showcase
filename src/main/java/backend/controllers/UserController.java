@@ -2,7 +2,9 @@ package backend.controllers;
 
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +18,25 @@ import backend.services.UserService;
 @RequestMapping("/api/users")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
     
+    private final UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<UserEntity>> getAllUsers() {
+     List<UserEntity> users = new ArrayList<>();
+        userService.findAllUsers().forEach(users::add);
+
+
+        if (users.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(users);
+
+        
+    }
     @GetMapping("/{id}")
     public ResponseEntity<UserEntity> getUserById(@PathVariable Long id) {
         return userService.findUserById(id)

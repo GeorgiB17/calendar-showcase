@@ -1,10 +1,9 @@
 package backend.services;
 
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import backend.entities.EventEntity;
@@ -13,9 +12,12 @@ import backend.repositories.EventRepository;
 
 @Service
 public class EventService {
-   
-    @Autowired
-    private  EventRepository eventRepository;
+    
+    private final EventRepository eventRepository;
+
+    public EventService(EventRepository eventRepository) {
+        this.eventRepository = eventRepository;
+    }
     
 
 
@@ -25,10 +27,10 @@ public class EventService {
     public Optional<EventEntity> findEventByTitle(String title) {
         return eventRepository.findByTitle(title);
     }
-    public Set<EventEntity> findEventsByCreator(UserEntity creator) {
+    public List<EventEntity> findEventsByCreator(UserEntity creator) {
         return eventRepository.findByCreator(creator);
     }
-    public Set<EventEntity> findEventsByParticipant(UserEntity participant) {
+    public List<EventEntity> findEventsByParticipant(UserEntity participant) {
         return eventRepository.findByParticipantsContains(participant);
     }
     public EventEntity saveEvent(EventEntity event) {
@@ -37,9 +39,13 @@ public class EventService {
     public void deleteEvent(Long id) {
         eventRepository.deleteById(id);
     }
-    public Set<EventEntity> findAllEvents() {
-        return Set.copyOf(eventRepository.findAll());
+    public List<EventEntity> findAllEvents() {
+        return eventRepository.findAll();
     }
+
+
+
+    
     
 
 
