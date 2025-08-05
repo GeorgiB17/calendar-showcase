@@ -10,13 +10,7 @@ import backend.entities.UserEntity;
 
 @Repository
 public interface EventRepository extends JpaRepository<EventEntity, Long> {
-
-
-    
     Optional<EventEntity> findByTitle(String title);
-
-    
-
     List<EventEntity> findByCreator(UserEntity creator);
     List<EventEntity> findByParticipantsContains(UserEntity participant);
 }

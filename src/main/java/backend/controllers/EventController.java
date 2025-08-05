@@ -33,7 +33,7 @@ public class EventController {
     
     @GetMapping("/test")
     public ResponseEntity<String> testEndpoint() {
-        return ResponseEntity.ok("Event Controller is working! denis merishe!");
+        return ResponseEntity.ok("Event Controller is working!");
     }
     
 }

@@ -90,9 +90,5 @@ public class UserEntity {
         this.eventsParticipated = eventsParticipated;
     }
 
-
-   
-
-
 }
 

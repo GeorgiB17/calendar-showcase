@@ -7,7 +7,7 @@ import backend.entities.UserEntity;
 import backend.repositories.UserRepository;
 @Component
 public class Startup implements CommandLineRunner {
-     
+
     private  UserRepository userRepository;
     
     @Override
@@ -19,7 +19,7 @@ public class Startup implements CommandLineRunner {
             user.setEmail("gogi@abv.bg");
             user.setPassword("password");
             userRepository.save(user);
-            System.out.println("Default user created: " + user.getUsername());
+            System.out.println("Default user created: " + user.getUsername()); //TODO: Logger
         }
     }
     

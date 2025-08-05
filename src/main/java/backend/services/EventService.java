@@ -18,9 +18,6 @@ public class EventService {
     public EventService(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
-    
-
-
     public Optional<EventEntity> findEventById(Long id) {
         return eventRepository.findById(id);
     }
