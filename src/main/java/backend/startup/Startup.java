@@ -13,10 +13,10 @@ public class Startup implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        if(userRepository.findByUsername("Gogi").isEmpty()) {
+        if(userRepository.findByUsername("default").isEmpty()) {
             UserEntity user = new UserEntity();
-            user.setUsername("Gogi");
-            user.setEmail("gogi@abv.bg");
+            user.setUsername("default");
+            user.setEmail("email@gmail.com");
             user.setPassword("password");
             userRepository.save(user);
             System.out.println("Default user created: " + user.getUsername()); //TODO: Logger

@@ -38,6 +38,13 @@ public class UserService {
     }
     public Optional<UserEntity> findUserByUsername(String username) {
         return userRepository.findByUsername(username);
+
+    }
+    public UserEntity createUser(UserEntity user) {
+        return userRepository.save(user);
+    }
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
     }
 
 }
