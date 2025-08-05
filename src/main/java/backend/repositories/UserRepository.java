@@ -15,4 +15,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByEmail(String email);
     List<UserEntity> findByCreatedEvents(EventEntity event);
     List<UserEntity> findByEventsParticipated(EventEntity event);
+    
 }
+
