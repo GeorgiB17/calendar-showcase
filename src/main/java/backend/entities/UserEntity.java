@@ -3,8 +3,6 @@ package backend.entities;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -67,7 +65,7 @@ public class UserEntity {
 
     
     
-    @JsonIgnore
+    //@//JsonIgnore
     public String getPassword() {
         return password;
     }

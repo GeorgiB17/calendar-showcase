@@ -60,8 +60,12 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseEntity.ok("User deleted successfully!");
     }
-    
+     @GetMapping("/{id}")
+    public ResponseEntity<UserEntity> getUserById(@PathVariable Long id) {
+        return userService.findUserById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
 
-
+    }
 }
 
