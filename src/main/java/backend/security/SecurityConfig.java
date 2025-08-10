@@ -11,10 +11,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-            .csrf(csrf -> csrf.disable()) 
+            .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/test").permitAll() // Allow public access to /test
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()  // Allow ALL requests without auth
             )
             .build();
     }

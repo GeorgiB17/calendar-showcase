@@ -1,4 +1,5 @@
 package backend.entities;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ import jakarta.persistence.Table;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     @Column(name = "user_id")
     private Long id;
     private String username;
@@ -62,6 +64,8 @@ public class UserEntity {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    
     
     @JsonIgnore
     public String getPassword() {
@@ -89,6 +93,8 @@ public class UserEntity {
     public void setEventsParticipated(Set<EventEntity> eventsParticipated) {
         this.eventsParticipated = eventsParticipated;
     }
+   
+
 
 }
 

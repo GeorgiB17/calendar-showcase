@@ -1,16 +1,20 @@
 package backend.dto;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = false)
 public class UserRegisterDTO {
     private String username;
     private String password;
     private String email;
+    private String fullName;
 
     public UserRegisterDTO() {}
 
-    public UserRegisterDTO(String username, String password, String email) {
+    public UserRegisterDTO(String username, String password, String email, String fullName) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.fullName = fullName;
     }
 
     public String getUsername() {
@@ -36,5 +40,13 @@ public class UserRegisterDTO {
     public void setEmail(String email) {
         this.email = email;
     }
+    public String getFullName() {
+        return fullName;
+    }
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+    
+
     
 }

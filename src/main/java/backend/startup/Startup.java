@@ -8,8 +8,12 @@ import backend.repositories.UserRepository;
 @Component
 public class Startup implements CommandLineRunner {
 
-    private  UserRepository userRepository;
+    private final  UserRepository userRepository;
     
+    public Startup(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
     public void run(String... args) throws Exception {
 

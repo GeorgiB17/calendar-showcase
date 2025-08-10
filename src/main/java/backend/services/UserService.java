@@ -14,6 +14,7 @@ import backend.repositories.UserRepository;
 public class UserService {
     
     private final UserRepository userRepository;
+    
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -39,5 +40,18 @@ public class UserService {
     public Optional<UserEntity> findUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+     public void saveUser(UserEntity user) {
+        userRepository.save(user);
+     }
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
 
+    
+
+    
+
+
+
+    
 }
