@@ -1,10 +1,10 @@
-import Message from './Message';
-import './App.css';
 
+import './App.css';
+import Calendar from './components/Calendar';
 
 function App() {
- return <div>111<Message /></div> ;
-  
+return <div> <Calendar /> </div> ;
+
 }
 
 export default App;
