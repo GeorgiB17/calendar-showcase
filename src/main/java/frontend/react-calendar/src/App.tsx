@@ -1,9 +1,9 @@
-
+import Nav from './components/Nav';
 import './App.css';
 import Calendar from './components/Calendar';
 
 function App() {
-return <div> <Calendar /> </div> ;
+return <div> <Nav/><Calendar/>  </div>;
 
 }
 
