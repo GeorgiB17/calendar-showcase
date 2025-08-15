@@ -1,9 +1,10 @@
 package backend.entities;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
-import jakarta.persistence.Column;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +21,6 @@ public class EventEntity {
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name = "event_id")
 private Long id;
 private String title;
 private String description;
@@ -29,6 +29,7 @@ private String location;
 
 @ManyToOne
 @JoinColumn(name = "user_id", nullable = false)
+@JsonBackReference
 private UserEntity creator;
 
     
@@ -38,7 +39,7 @@ private UserEntity creator;
     joinColumns = @JoinColumn(name = "event_id"),
     inverseJoinColumns = @JoinColumn(name = "user_id")
 )
-private List<UserEntity> participants;
+private Set<UserEntity> participants;
 
 public EventEntity() {
 }
@@ -56,8 +57,11 @@ public Long getId() {
 public void setId(Long id) {
     this.id = id;
 }
+
 public String getTitle() {
     return title;
+
+
 }
 public void setTitle(String title) {
     this.title = title;}
@@ -85,10 +89,10 @@ public UserEntity getCreator() {
 public void setCreator(UserEntity creator) {
     this.creator = creator;
 }
-public List<UserEntity> getParticipants() {
+public Set<UserEntity> getParticipants() {
     return participants;
 }
-public void setParticipants(List<UserEntity> participants) {
+public void setParticipants(Set<UserEntity> participants) {
     this.participants = participants;
 }
 

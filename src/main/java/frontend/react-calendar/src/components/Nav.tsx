@@ -16,7 +16,7 @@ function Nav() {
         borderBottom: "1px solid #e5e5e5",
         margin: 0,
         boxSizing: "border-box",
-        zIndex: 1000,
+        zIndex: 1000, // big number
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
