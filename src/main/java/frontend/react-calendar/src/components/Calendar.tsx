@@ -55,12 +55,25 @@ function Calendar() {
         }}
       >
         <div>
-          {" "}
-          <h1 style={{ width: "300px", textAlign: "center", margin: 0 }}>
+          <h1
+            style={{
+              width: "300px",
+              textAlign: "center",
+              marginBottom: 25,
+              marginLeft: "25px",
+            }}
+          >
             {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
           </h1>
         </div>
-        <div style={{ display: "flex", marginLeft: "-10px", gap: "1px" }}>
+        <div
+          style={{
+            display: "flex",
+            marginLeft: "10px",
+            gap: "1px",
+            marginBottom: 25,
+          }}
+        >
           <button
             className="btn btn-primary rounded-pill px-4 shadow-sm"
             onClick={backwardDate}
@@ -81,7 +94,10 @@ function Calendar() {
           </button>
         </div>
       </div>
-      <table className="table table-bordered">
+      <table
+        className="table table-bordered"
+        style={{ width: "95%", marginLeft: "25px" }}
+      >
         <thead>
           <tr>
             <th></th>

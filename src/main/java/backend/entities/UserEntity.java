@@ -3,6 +3,8 @@ package backend.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +28,7 @@ public class UserEntity {
     private String fullName;
     
     
-    
+    @JsonManagedReference
     @OneToMany(mappedBy = "creator")
     private Set<EventEntity> createdEvents= new HashSet<>();
 

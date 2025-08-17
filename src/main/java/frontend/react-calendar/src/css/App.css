@@ -1,0 +1,44 @@
+div {
+  font-family: Arial, sans-serif;
+  
+}
+ .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5); 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+   
+    .modal-content {
+      background-color: #fff; 
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      min-width: 300px;
+      max-width: 85%; 
+      height: 400px;
+    }
+.close-btn {
+  margin-top: 15px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: #218838;
+}
+
+
+

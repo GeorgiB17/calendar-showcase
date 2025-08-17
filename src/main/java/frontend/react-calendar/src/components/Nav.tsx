@@ -1,8 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import ProfilePic from "./ProfilePic";
+import ProfilePic from "./Profile";
 import cat from "../assets/cat.png";
 
-function Nav() {
+type NavProps = {
+  onOpenModal: () => void;
+};
+
+function Nav({ onOpenModal }: Readonly<NavProps>) {
   return (
     <header
       style={{
@@ -16,21 +20,21 @@ function Nav() {
         borderBottom: "1px solid #e5e5e5",
         margin: 0,
         boxSizing: "border-box",
-        zIndex: 1000, // big number
+        zIndex: 1000, // big number:)
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
         height: "85px",
       }}
     >
-      <div style={{ marginLeft: "-5px" }}>
+      <div style={{ marginLeft: "10px" }}>
         <ProfilePic src={cat} size={65} name="Georgi" />
       </div>
 
       <div>
         <button
           className="btn btn-success rounded-pill px-4 shadow-sm"
-          onClick={() => alert("Create Event Clicked")}
+          onClick={onOpenModal}
         >
           Create Event
         </button>

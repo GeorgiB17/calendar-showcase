@@ -11,6 +11,8 @@ import backend.entities.UserEntity;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
+    @Override
+    Optional<UserEntity> findById(Long id);
     Optional<UserEntity> findByUsername(String username);
     Optional<UserEntity> findByEmail(String email);
     List<UserEntity> findByCreatedEvents(EventEntity event);

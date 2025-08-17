@@ -37,7 +37,7 @@ const Profile: React.FC<ProfileProps> = ({ src, name = "User", size = 50 }) => {
           />
         )}
       </div>
-      <span style={{ fontSize: "1.2rem", fontWeight: 500, marginLeft: "-6px" }}>
+      <span style={{ fontSize: "1.2rem", fontWeight: 500, marginLeft: "10px" }}>
         {name}
       </span>
     </div>

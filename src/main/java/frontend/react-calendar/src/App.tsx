@@ -1,12 +1,17 @@
 import Nav from "./components/Nav";
-import "./App.css";
+import "./css/App.css";
 import Calendar from "./components/Calendar";
-
+import CreateEventModal from "./components/CreateEventModal";
+import { useState } from "react";
 function App() {
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => setShowModal(!showModal);
+
   return (
     <div>
-      <Nav />
-      <div style={{ marginTop: "80px" }}>
+      <Nav onOpenModal={() => setShowModal(true)} />
+      {showModal && <CreateEventModal onClose={toggleModal} />}
+      <div style={{ marginTop: "100px" }}>
         <Calendar />
       </div>
     </div>
