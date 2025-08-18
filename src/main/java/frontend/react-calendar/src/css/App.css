@@ -2,21 +2,21 @@ div {
   font-family: Arial, sans-serif;
   
 }
-/* Modal overlay */
+
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: red; /* dark transparent backdrop */
+  background: red; 
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1001; /* on top of everything */
+  z-index: 1001;
   animation: fadeIn 0.3s ease-out;
 }
 
 .modal-content {
   color: purple;
-  background: #ffffff; /* solid white background */
+  background: #ffffff; 
   padding: 2rem;
   border-radius: 1rem;
   max-width: 500px;
@@ -30,21 +30,21 @@ div {
 
 
 
-/* Heading */
+
 .modal-content h2 {
   margin-bottom: 1rem;
   font-size: 1.5rem;
   color: #222;
 }
 
-/* Paragraph */
+
 .modal-content p {
   margin-bottom: 1.5rem;
   color: #555;
   line-height: 1.4;
 }
 
-/* Close button */
+
 .close-btn {
   background: #e63946;
   color: #fff;
@@ -60,7 +60,7 @@ div {
   background: #d62828;
 }
 
-/* Animations */
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
