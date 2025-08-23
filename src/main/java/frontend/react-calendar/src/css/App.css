@@ -2,50 +2,51 @@ div {
   font-family: Arial, sans-serif;
   
 }
-/* Modal overlay */
+
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: red; /* dark transparent backdrop */
+  background: rgba(0, 0, 0, 0.5); 
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1001; /* on top of everything */
+  z-index: 1001; 
   animation: fadeIn 0.3s ease-out;
 }
 
+
+/* Modal box */
 .modal-content {
-  color: purple;
-  background: #ffffff; /* solid white background */
+  background: #ffffff !important;
   padding: 2rem;
   border-radius: 1rem;
   max-width: 500px;
-  width: 90%;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
   text-align: center;
-  animation: fadeIn 0.3s ease-out;
-  z-index: 1002;
- 
+  position: relative;
+  animation: slideUp 0.3s ease-out;
+  font-family: system-ui, sans-serif;
 }
 
 
 
-/* Heading */
+
 .modal-content h2 {
   margin-bottom: 1rem;
   font-size: 1.5rem;
-  color: #222;
+  color: #222 ;
 }
 
-/* Paragraph */
-.modal-content p {
+
+.modal-content p, label {
   margin-bottom: 1.5rem;
-  color: #555;
+  color: #0a0202;
   line-height: 1.4;
 }
 
-/* Close button */
-.close-btn {
+
+.modal-btn, .close-btn {
   background: #e63946;
   color: #fff;
   border: none;
@@ -54,9 +55,14 @@ div {
   cursor: pointer;
   font-size: 1rem;
   transition: background 0.2s ease;
+  width: 100px;
 }
 
-.close-btn:hover {
+#modal-btn-submit {
+ background: green;
+}
+
+.btnModal:hover {
   background: #d62828;
 }
 
