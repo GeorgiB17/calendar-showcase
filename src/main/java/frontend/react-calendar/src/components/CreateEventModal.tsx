@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../css/app.css";
 
 type CreateEventModalProps = {
@@ -7,43 +8,217 @@ type CreateEventModalProps = {
 export default function CreateEventModal({
   onClose,
 }: Readonly<CreateEventModalProps>) {
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [duration, setDuration] = useState("60");
+  const [description, setDescription] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const newEvent = {
+      title,
+      date,
+      time,
+      duration,
+      description,
+    };
+    try {
+      const response = await fetch("http://localhost:5003/api/events/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newEvent),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to create event");
+      }
+      console.log("Event submitted:", newEvent);
+      setIsSuccess(true);
+    } catch (error) {
+      console.error(error);
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (isSuccess) {
+    return (
+      <div className="modal-overlay">
+        <div className="modal-content" style={{ textAlign: "center" }}>
+          <h2>Event Created!</h2>
+          <div
+            style={{
+              fontSize: "3rem",
+              color: "green",
+              marginBottom: "1rem",
+            }}
+          >
+            ✅
+          </div>
+
+          <button
+            onClick={onClose}
+            className="modal-btn rounded-pill px-4 shadow-sm"
+            id="modal-btn-submit"
+            style={{ marginTop: "20px", alignSelf: "flex-end" }}
+          >
+            Ok
+          </button>
+        </div>
+      </div>
+    );
+  }
+  if (isLoading) {
+    return (
+      <div className="modal-overlay">
+        <div className="modal-content" style={{ textAlign: "center" }}>
+          <div
+            className="spinner"
+            style={{ fontSize: "3rem", marginBottom: "1rem" }}
+          >
+            ⏳
+          </div>
+          <h2>Creating event...</h2>
+        </div>
+      </div>
+    );
+  }
+  if (isError) {
+    return (
+      <div className="modal-overlay">
+        <div className="modal-content" style={{ textAlign: "center" }}>
+          <h2>Something went wrong with event creation!</h2>
+          <div
+            style={{
+              fontSize: "3rem",
+              color: "red",
+              marginBottom: "1rem",
+            }}
+          >
+            ❌
+          </div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <button
+              onClick={onClose}
+              className="modal-btn rounded-pill px-4 shadow-sm"
+              id="modal-btn-submit"
+              style={{ marginTop: "20px", backgroundColor: "blue" }}
+            >
+              💀🥀
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Create an Event</h2>
-        <div
+        <h2 className="text-xl font-semibold mb-4">Create an Event</h2>
+
+        <form
+          onSubmit={handleSubmit}
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "10px",
+            gap: "15px",
             marginBottom: "20px",
           }}
         >
-          <label htmlFor="event-title">Event Title:</label>
-          <input type="text" id="event-title" name="event-title" />
-          <label htmlFor="event-date">Event Date:</label>
-          <input type="date" id="event-date" name="event-date" />
-          <label htmlFor="event-time">Event Time:</label>
-          <input type="time" id="event-time" name="event-time" />
-          <label htmlFor="event-description">Event Description:</label>
-          <textarea id="event-description" name="event-description" rows={4} />
-        </div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <label htmlFor="event-title">Event Title:</label>
+            <input
+              type="text"
+              id="event-title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+          </div>
 
-        <div style={{ display: "flex", gap: "10px", justifyContent: "right" }}>
-          <button
-            onClick={onClose}
-            className="close-btn rounded-pill shadow-sm"
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <label htmlFor="event-date">Event Date:</label>
+            <input
+              type="date"
+              id="event-date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              required
+            />
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
-            Close
-          </button>
-          <button
-            type="submit"
-            className="modal-btn rounded-pill px-4 shadow-sm"
-            id="modal-btn-submit"
+            <label htmlFor="start-time">Event Time:</label>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <input
+                type="time"
+                id="start-time"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
+                required
+              />
+              <select
+                value={duration}
+                onChange={(e) => setDuration(e.target.value)}
+              >
+                <option value="30">30 min</option>
+                <option value="60">1 hour</option>
+                <option value="90">1 hour 30 min</option>
+                <option value="120">2 hours</option>
+                <option value="150">2 hours 30 min</option>
+                <option value="180">3 hours</option>
+              </select>
+            </div>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <label htmlFor="event-description">Event Description:</label>
+            <textarea
+              id="event-description"
+              rows={4}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              gap: "10px",
+              justifyContent: "flex-end",
+            }}
           >
-            Submit
-          </button>
-        </div>
+            <button
+              type="button"
+              onClick={onClose}
+              className="close-btn rounded-pill shadow-sm"
+            >
+              Close
+            </button>
+            <button
+              type="submit"
+              className="modal-btn rounded-pill px-4 shadow-sm"
+              id="modal-btn-submit"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
