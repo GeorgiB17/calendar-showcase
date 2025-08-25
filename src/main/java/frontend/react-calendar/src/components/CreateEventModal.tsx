@@ -26,6 +26,7 @@ export default function CreateEventModal({
       time,
       duration,
       description,
+      participants: [],
     };
     try {
       const response = await fetch("http://localhost:5003/api/events/create", {
