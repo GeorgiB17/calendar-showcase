@@ -26,6 +26,7 @@ private String title;
 private String description;
 private LocalDateTime time;
 private String location;
+private String duration;
 
 @ManyToOne
 @JoinColumn(name = "user_id", nullable = false)
@@ -43,13 +44,14 @@ private Set<UserEntity> participants;
 
 public EventEntity() {
 }
-public EventEntity(Long id, String title, String description, LocalDateTime time, String location, UserEntity creator) {
+public EventEntity(Long id, String title, String description, LocalDateTime time, String location, UserEntity creator, String duration) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.time = time;
     this.location = location;
     this.creator = creator;
+    this.duration =duration;
 }
 public Long getId() {
     return id;
@@ -95,6 +97,11 @@ public Set<UserEntity> getParticipants() {
 public void setParticipants(Set<UserEntity> participants) {
     this.participants = participants;
 }
-
+public String getDuration() {
+    return duration;
+}
+public void setDuration(String duration) {
+    this.duration = duration;
+}
 
 }

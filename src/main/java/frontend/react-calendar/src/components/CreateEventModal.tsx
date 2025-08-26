@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../css/app.css";
-
+import LoadingModal from "./LoadingModal";
+import ErrorModal from "./ErrorModal";
 type CreateEventModalProps = {
   onClose: () => void;
 };
@@ -21,12 +22,13 @@ export default function CreateEventModal({
     e.preventDefault();
     setIsLoading(true);
     const newEvent = {
+      creatorID: 1,
       title,
-      date,
-      time,
+      time: `${date}T${time}:00`,
       duration,
       description,
       participants: [],
+      location: "Sofia",
     };
     try {
       const response = await fetch("http://localhost:5003/api/events/create", {
@@ -37,7 +39,8 @@ export default function CreateEventModal({
         body: JSON.stringify(newEvent),
       });
       if (!response.ok) {
-        throw new Error("Failed to create event");
+        const errorText = await response.text();
+        throw new Error(errorText || "Failed to create event");
       }
       console.log("Event submitted:", newEvent);
       setIsSuccess(true);
@@ -77,46 +80,14 @@ export default function CreateEventModal({
     );
   }
   if (isLoading) {
-    return (
-      <div className="modal-overlay">
-        <div className="modal-content" style={{ textAlign: "center" }}>
-          <div
-            className="spinner"
-            style={{ fontSize: "3rem", marginBottom: "1rem" }}
-          >
-            ⏳
-          </div>
-          <h2>Creating event...</h2>
-        </div>
-      </div>
-    );
+    return <LoadingModal text="Creating event, please wait..." />;
   }
   if (isError) {
     return (
-      <div className="modal-overlay">
-        <div className="modal-content" style={{ textAlign: "center" }}>
-          <h2>Something went wrong with event creation!</h2>
-          <div
-            style={{
-              fontSize: "3rem",
-              color: "red",
-              marginBottom: "1rem",
-            }}
-          >
-            ❌
-          </div>
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <button
-              onClick={onClose}
-              className="modal-btn rounded-pill px-4 shadow-sm"
-              id="modal-btn-submit"
-              style={{ marginTop: "20px", backgroundColor: "blue" }}
-            >
-              💀🥀
-            </button>
-          </div>
-        </div>
-      </div>
+      <ErrorModal
+        text="An error occurred while creating the event. Please try again."
+        onClose={onClose}
+      />
     );
   }
 
