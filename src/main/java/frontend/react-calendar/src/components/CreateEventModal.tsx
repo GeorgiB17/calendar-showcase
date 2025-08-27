@@ -2,6 +2,8 @@ import { useState } from "react";
 import "../css/app.css";
 import LoadingModal from "./LoadingModal";
 import ErrorModal from "./ErrorModal";
+import SuccessModal from "./SuccessModal";
+
 type CreateEventModalProps = {
   onClose: () => void;
 };
@@ -52,146 +54,119 @@ export default function CreateEventModal({
     }
   };
 
-  if (isSuccess) {
-    return (
-      <div className="modal-overlay">
-        <div className="modal-content" style={{ textAlign: "center" }}>
-          <h2>Event Created!</h2>
-          <div
-            style={{
-              fontSize: "3rem",
-              color: "green",
-              marginBottom: "1rem",
-            }}
-          >
-            ✅
-          </div>
-
-          <button
-            onClick={onClose}
-            className="modal-btn rounded-pill px-4 shadow-sm"
-            id="modal-btn-submit"
-            style={{ marginTop: "20px", alignSelf: "flex-end" }}
-          >
-            Ok
-          </button>
-        </div>
-      </div>
-    );
-  }
-  if (isLoading) {
-    return <LoadingModal text="Creating event, please wait..." />;
-  }
-  if (isError) {
-    return (
-      <ErrorModal
-        text="An error occurred while creating the event. Please try again."
-        onClose={onClose}
-      />
-    );
-  }
-
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h2 className="text-xl font-semibold mb-4">Create an Event</h2>
+    <>
+      <div className="modal-overlay">
+        <div className="modal-content">
+          <h2 className="text-xl font-semibold mb-4">Create an Event</h2>
 
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "15px",
-            marginBottom: "20px",
-          }}
-        >
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <label htmlFor="event-title">Event Title:</label>
-            <input
-              type="text"
-              id="event-title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-            />
-          </div>
-
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <label htmlFor="event-date">Event Date:</label>
-            <input
-              type="date"
-              id="event-date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              required
-            />
-          </div>
-
-          <div
+          <form
+            onSubmit={handleSubmit}
             style={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
+              gap: "15px",
+              marginBottom: "20px",
             }}
           >
-            <label htmlFor="start-time">Event Time:</label>
-            <div style={{ display: "flex", gap: "10px" }}>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <label htmlFor="event-title">Event Title:</label>
               <input
-                type="time"
-                id="start-time"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
+                type="text"
+                id="event-title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 required
               />
-              <select
-                value={duration}
-                onChange={(e) => setDuration(e.target.value)}
-              >
-                <option value="30">30 min</option>
-                <option value="60">1 hour</option>
-                <option value="90">1 hour 30 min</option>
-                <option value="120">2 hours</option>
-                <option value="150">2 hours 30 min</option>
-                <option value="180">3 hours</option>
-              </select>
             </div>
-          </div>
 
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <label htmlFor="event-description">Event Description:</label>
-            <textarea
-              id="event-description"
-              rows={4}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            />
-          </div>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <label htmlFor="event-date">Event Date:</label>
+              <input
+                type="date"
+                id="event-date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                required
+              />
+            </div>
 
-          <div
-            style={{
-              display: "flex",
-              gap: "10px",
-              justifyContent: "flex-end",
-            }}
-          >
-            <button
-              type="button"
-              onClick={onClose}
-              className="close-btn rounded-pill shadow-sm"
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
             >
-              Close
-            </button>
-            <button
-              type="submit"
-              className="modal-btn rounded-pill px-4 shadow-sm"
-              id="modal-btn-submit"
+              <label htmlFor="start-time">Event Time:</label>
+              <div style={{ display: "flex", gap: "10px" }}>
+                <input
+                  type="time"
+                  id="start-time"
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                  required
+                />
+                <select
+                  value={duration}
+                  onChange={(e) => setDuration(e.target.value)}
+                >
+                  <option value="30">30 min</option>
+                  <option value="60">1 hour</option>
+                  <option value="90">1 hour 30 min</option>
+                  <option value="120">2 hours</option>
+                  <option value="150">2 hours 30 min</option>
+                  <option value="180">3 hours</option>
+                </select>
+              </div>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <label htmlFor="event-description">Event Description:</label>
+              <textarea
+                id="event-description"
+                rows={4}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+              />
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                gap: "10px",
+                justifyContent: "flex-end",
+              }}
             >
-              Submit
-            </button>
-          </div>
-        </form>
+              <button
+                type="button"
+                onClick={onClose}
+                className="close-btn rounded-pill shadow-sm"
+              >
+                Close
+              </button>
+              <button
+                type="submit"
+                className="modal-btn rounded-pill px-4 shadow-sm"
+                id="modal-btn-submit"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+      {isLoading && <LoadingModal />}
+      {isSuccess && (
+        <SuccessModal onClose={onClose} text="Event created successfully!" />
+      )}
+      {isError && (
+        <ErrorModal
+          onClose={onClose}
+          text="An error occurred while creating the event. Please try again."
+        />
+      )}
+    </>
   );
 }

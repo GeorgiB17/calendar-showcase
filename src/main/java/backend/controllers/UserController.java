@@ -3,7 +3,9 @@ package backend.controllers;
 
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import backend.dto.LoginDTO;
 import backend.dto.UserRegisterDTO;
 import backend.entities.UserEntity;
 import backend.services.UserService;
@@ -67,5 +70,32 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
 
     }
+
+    @GetMapping("/username/{username}") 
+    public ResponseEntity<UserEntity> getUserByUsername(@PathVariable String username) {
+        return userService.findUserByUsername(username)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+    
+        @PostMapping("/login")
+        public ResponseEntity<?> login(@RequestBody LoginDTO request) {
+            Optional<UserEntity> optionalUser = userService.findUserByUsername(request.getUsername());
+
+            if (optionalUser.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+            }
+
+            UserEntity user = optionalUser.get();
+
+            
+            if (!userService.checkPassword(request.getPassword(), user.getPassword())) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+            }
+
+            
+            return ResponseEntity.ok(user);
+        }
+    /////////////////todo hashing
 }
 

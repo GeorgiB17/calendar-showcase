@@ -12,6 +12,7 @@ import backend.repositories.UserRepository;
 
 @Service
 public class UserService {
+     
     
     private final UserRepository userRepository;
     
@@ -25,6 +26,9 @@ public class UserService {
             return userRepository.findByUsername(username);
         }
         return Optional.empty();
+    }
+   public boolean checkPassword(String rawPassword, String storedPassword) {
+        return rawPassword.equals(storedPassword);
     }
 
     public void setUserPassword(UserEntity user, String password) {

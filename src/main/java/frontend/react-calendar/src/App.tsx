@@ -4,10 +4,15 @@ import Calendar from "./components/Calendar";
 import CreateEventModal from "./components/CreateEventModal";
 import { useState } from "react";
 import Login from "./components/Login";
+import Register from "./components/Register";
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
   const toggleModal = () => setShowModal((prev) => !prev);
+  const toggleRegister = () => setShowRegister((prev) => !prev);
+  const toggleIsLoggedIn = () => setIsLoggedIn((prev) => !prev);
 
   if (isLoggedIn) {
     return (
@@ -20,7 +25,15 @@ function App() {
       </div>
     );
   }
-  return <Login onLoginSuccess={() => setIsLoggedIn(true)} />;
+  if (showRegister) {
+    return <Register toggleRegister={toggleRegister} />;
+  }
+  return (
+    <Login
+      onLoginSuccess={toggleIsLoggedIn}
+      switchToRegister={toggleRegister}
+    />
+  );
 }
 
 export default App;
