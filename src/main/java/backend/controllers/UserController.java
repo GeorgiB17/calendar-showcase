@@ -1,7 +1,9 @@
 package backend.controllers;
 
 
-
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,16 +11,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import backend.dto.LoginDTO;
 import backend.dto.UserRegisterDTO;
 import backend.entities.UserEntity;
 import backend.services.UserService;
+
 
 @RestController
 @RequestMapping("/api/users")
@@ -47,7 +53,7 @@ public class UserController {
         UserEntity user = new UserEntity();
         user.setUsername(dto.getUsername());
         user.setPassword(dto.getPassword());
-        user.setFullName(dto.getFullName());
+        user.setProfilePic(dto.getProfilePic());
         user.setEmail(dto.getEmail());
         
         userService.saveUser(user);
@@ -96,6 +102,46 @@ public class UserController {
             
             return ResponseEntity.ok(user);
         }
-    /////////////////todo hashing
+
+        @PatchMapping("/{id}/uploadProfilePic")
+public ResponseEntity<String> updateProfilePic(
+        @PathVariable Long id,
+        @RequestParam("file") MultipartFile file) {
+
+    Optional<UserEntity> user = userService.findUserById(id);
+    if (user.isEmpty()) {
+        return ResponseEntity.status(404).body("User not found");
+    }
+
+    try {
+        // 1. Save file to server
+        String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+        Path uploadPath = Paths.get("uploads/");
+        Files.createDirectories(uploadPath); // make sure folder exists
+        Path filePath = uploadPath.resolve(filename);
+        Files.write(filePath, file.getBytes());
+
+        // 2. Update user's profilePicUrl
+        String fileUrl = "/uploads/" + filename; // or full URL if needed
+        userService.updateUserProfilePic(id, fileUrl);
+
+        // 3. Return success
+        return ResponseEntity.ok("Profile picture updated successfully");
+
+    } catch (Exception e) {
+        return ResponseEntity.status(500).body("Failed to upload profile picture");
+    }
+}
+
+        @GetMapping("/picture/{id}")
+        public ResponseEntity<String> getProfilePic(@PathVariable Long id) {
+            Optional<UserEntity> userOpt = userService.findUserById(id);
+            if (userOpt.isEmpty()) {
+                return ResponseEntity.status(404).body("User not found");
+            }
+            String profilePicUrl = userOpt.get().getProfilePic();
+            return ResponseEntity.ok(profilePicUrl);
+        }
+   
 }
 

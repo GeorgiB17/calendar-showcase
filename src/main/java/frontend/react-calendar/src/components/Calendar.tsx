@@ -1,7 +1,12 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import type { Event } from "./Types";
 
-function Calendar() {
+type CalendarProps = {
+  events: Event[];
+};
+
+function Calendar({ events }: Readonly<CalendarProps>) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const monday = new Date(currentDate);
   monday.setDate(monday.getDate() - ((currentDate.getDay() + 6) % 7));

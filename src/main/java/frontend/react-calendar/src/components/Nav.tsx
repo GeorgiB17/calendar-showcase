@@ -1,12 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import ProfilePic from "./Profile";
-import cat from "../assets/cat.png";
-
+import Profile from "./Profile";
+import type { User } from "./Types";
 type NavProps = {
   onOpenModal: () => void;
+  user: User | null;
 };
 
-function Nav({ onOpenModal }: Readonly<NavProps>) {
+function Nav({ onOpenModal, user }: Readonly<NavProps>) {
   return (
     <header
       style={{
@@ -28,7 +28,7 @@ function Nav({ onOpenModal }: Readonly<NavProps>) {
       }}
     >
       <div style={{ marginLeft: "10px" }}>
-        <ProfilePic src={cat} size={65} name="Georgi" />
+        <Profile user={user} />
       </div>
 
       <div>

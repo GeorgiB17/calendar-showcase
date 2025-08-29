@@ -2,13 +2,21 @@ import { useState } from "react";
 import "../css/app.css";
 import LoadingModal from "./LoadingModal";
 import ErrorModal from "./ErrorModal";
+import type { User, Event } from "./Types";
 
 type LoginProps = {
   onLoginSuccess: () => void;
   switchToRegister: () => void;
+  setEvents: (events: Event[]) => void;
+  setUser: (user: User) => void;
 };
 
-function Login({ onLoginSuccess, switchToRegister }: Readonly<LoginProps>) {
+function Login({
+  onLoginSuccess,
+  switchToRegister,
+  setEvents,
+  setUser,
+}: Readonly<LoginProps>) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [username, setUsername] = useState("");
@@ -35,7 +43,9 @@ function Login({ onLoginSuccess, switchToRegister }: Readonly<LoginProps>) {
         throw new Error(errorText || "Invalid username or password");
       }
       const responseData = await response.json();
-      console.log("Login successful:", responseData);
+      setUser(responseData.user);
+      setEvents(responseData.events);
+
       onLoginSuccess();
     } catch (error) {
       console.error(error);
