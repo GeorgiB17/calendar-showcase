@@ -57,6 +57,14 @@ public class UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+    public void updateUserProfilePic(Long id, String profilePicUrl) {
+        Optional<UserEntity> userOpt = userRepository.findById(id);
+        if (userOpt.isPresent()) {
+            UserEntity user = userOpt.get();
+            user.setProfilePic(profilePicUrl);
+            userRepository.save(user);
+        }
+    }
 
     
 

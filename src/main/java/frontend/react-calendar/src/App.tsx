@@ -5,6 +5,7 @@ import CreateEventModal from "./components/CreateEventModal";
 import { useState } from "react";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import type { Event, User } from "./components/Types";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -13,14 +14,16 @@ function App() {
   const toggleModal = () => setShowModal((prev) => !prev);
   const toggleRegister = () => setShowRegister((prev) => !prev);
   const toggleIsLoggedIn = () => setIsLoggedIn((prev) => !prev);
+  const [events, setEvents] = useState<Event[]>([]);
+  const [user, setUser] = useState<User | null>(null);
 
   if (isLoggedIn) {
     return (
-      <div>
-        <Nav onOpenModal={() => setShowModal(true)} />
+      <div className="app-background">
+        <Nav onOpenModal={() => setShowModal(true)} user={user} />
         {showModal && <CreateEventModal onClose={toggleModal} />}
         <div style={{ marginTop: "100px" }}>
-          <Calendar />
+          <Calendar events={events} />
         </div>
       </div>
     );
@@ -29,10 +32,14 @@ function App() {
     return <Register toggleRegister={toggleRegister} />;
   }
   return (
-    <Login
-      onLoginSuccess={toggleIsLoggedIn}
-      switchToRegister={toggleRegister}
-    />
+    <div className="app-background">
+      <Login
+        setEvents={setEvents}
+        setUser={setUser}
+        onLoginSuccess={toggleIsLoggedIn}
+        switchToRegister={toggleRegister}
+      />
+    </div>
   );
 }
 

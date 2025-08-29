@@ -6,15 +6,15 @@ public class UserRegisterDTO {
     private String username;
     private String password;
     private String email;
-    private String fullName;
+    private String profilePic;
 
     public UserRegisterDTO() {}
 
-    public UserRegisterDTO(String username, String password, String email, String fullName) {
+    public UserRegisterDTO(String username, String password, String email, String profilePic) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.fullName = fullName;
+        this.profilePic = profilePic;
     }
 
     public String getUsername() {
@@ -40,11 +40,11 @@ public class UserRegisterDTO {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getFullName() {
-        return fullName;
+    public String getProfilePic() {
+        return profilePic;
     }
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
     }
     
 
