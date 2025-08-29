@@ -9,11 +9,12 @@ This is the public showcase version of my private calendar app — built to demo
 - 🗓️ Create, edit, and delete events  
 - 🎨 Clean and responsive UI (React)  
 - ⚡ Backend powered by Spring Boot  
+- 🔐 Login and registration system with profile pictures  
 
 ---
 
 ## 🚀 Tech Stack
-- **Frontend:** React 
+- **Frontend:** React with TypeScript
 - **Backend:** Spring Boot (REST API)  
 - **Database:** PostgreSQL
 
