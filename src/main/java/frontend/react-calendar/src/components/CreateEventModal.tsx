@@ -3,13 +3,16 @@ import "../css/app.css";
 import LoadingModal from "./LoadingModal";
 import ErrorModal from "./ErrorModal";
 import SuccessModal from "./SuccessModal";
+import type { User } from "./Types";
 
 type CreateEventModalProps = {
   onClose: () => void;
+  user: User;
 };
 
 export default function CreateEventModal({
   onClose,
+  user,
 }: Readonly<CreateEventModalProps>) {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
@@ -24,7 +27,7 @@ export default function CreateEventModal({
     e.preventDefault();
     setIsLoading(true);
     const newEvent = {
-      creatorID: 1,
+      creatorID: user.id,
       title,
       time: `${date}T${time}:00`,
       duration,

@@ -21,7 +21,7 @@ function App() {
     return (
       <div className="app-background">
         <Nav onOpenModal={() => setShowModal(true)} user={user} />
-        {showModal && <CreateEventModal onClose={toggleModal} />}
+        {showModal && <CreateEventModal onClose={toggleModal} user={user!} />}
         <div style={{ marginTop: "100px" }}>
           <Calendar events={events} />
         </div>
