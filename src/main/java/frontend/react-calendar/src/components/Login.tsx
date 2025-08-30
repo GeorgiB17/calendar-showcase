@@ -43,8 +43,8 @@ function Login({
         throw new Error(errorText || "Invalid username or password");
       }
       const responseData = await response.json();
-      setUser(responseData.user);
-      setEvents(responseData.events);
+      setUser(responseData);
+      setEvents(responseData.createdEvents);
 
       onLoginSuccess();
     } catch (error) {
@@ -167,7 +167,7 @@ function Login({
       {isLoading && <LoadingModal text="Logging in..." />}
       {isError && (
         <ErrorModal
-          text="Login failed. Please try again."
+          text={"Login failed. Please check your credentials and try again."}
           onClose={() => setIsError(false)}
         />
       )}

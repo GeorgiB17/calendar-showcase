@@ -7,14 +7,17 @@ public class UserRegisterDTO {
     private String password;
     private String email;
     private String profilePic;
+    private String name;
 
     public UserRegisterDTO() {}
 
-    public UserRegisterDTO(String username, String password, String email, String profilePic) {
+    public UserRegisterDTO(String username, String password, String email, String profilePic, String name) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.profilePic = profilePic;
+        this.name = name;
+        
     }
 
     public String getUsername() {
@@ -47,6 +50,12 @@ public class UserRegisterDTO {
         this.profilePic = profilePic;
     }
     
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     
 }

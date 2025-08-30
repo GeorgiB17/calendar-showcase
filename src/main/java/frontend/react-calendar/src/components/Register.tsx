@@ -12,6 +12,7 @@ function Register({ toggleRegister }: Readonly<RegisterProps>) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -19,6 +20,7 @@ function Register({ toggleRegister }: Readonly<RegisterProps>) {
     e.preventDefault();
     setIsLoading(true);
     const newUser = {
+      name,
       username,
       email,
       password,
@@ -59,6 +61,16 @@ function Register({ toggleRegister }: Readonly<RegisterProps>) {
               gap: "15px",
             }}
           >
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <label htmlFor="Name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <label htmlFor="username">Username:</label>
               <input

@@ -97,18 +97,3 @@ div {
 
 
 
-.app-background {
-  background: linear-gradient(135deg, #6b73ff, #000dff); 
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-html, body, #root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-

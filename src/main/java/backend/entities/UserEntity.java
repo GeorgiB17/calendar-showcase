@@ -26,6 +26,7 @@ public class UserEntity {
     private String email;
     private String password;
     private String profilePic;
+    private String name;
     
     
     @JsonManagedReference
@@ -39,12 +40,13 @@ public class UserEntity {
     
     }
 
-    public UserEntity(Long id, String username, String email, String password, String profilePic) {
+    public UserEntity(Long id, String username, String email, String password, String profilePic, String name) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.profilePic = profilePic;
+        this.name = name;
     }
     public Long getId() {
         return id;
@@ -92,6 +94,12 @@ public class UserEntity {
     }
     public void setEventsParticipated(Set<EventEntity> eventsParticipated) {
         this.eventsParticipated = eventsParticipated;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
    
 

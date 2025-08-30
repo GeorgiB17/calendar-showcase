@@ -43,7 +43,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody UserRegisterDTO dto) {
-        if (dto.getUsername() == null || dto.getPassword() == null || dto.getEmail() == null) {
+        if (dto.getUsername() == null || dto.getPassword() == null || dto.getEmail() == null || dto.getName() == null) {
             return ResponseEntity.badRequest().body("All input fields are required.");
         }
         if (userService.findUserByUsername(dto.getUsername()).isPresent()) {
@@ -55,6 +55,7 @@ public class UserController {
         user.setPassword(dto.getPassword());
         user.setProfilePic(dto.getProfilePic());
         user.setEmail(dto.getEmail());
+        user.setName(dto.getName());
         
         userService.saveUser(user);
         

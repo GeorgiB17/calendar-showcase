@@ -2,16 +2,11 @@ import React from "react";
 import type { User } from "./Types";
 import cat from "../assets/cat.png";
 interface ProfileProps {
-  name?: string;
   size?: number;
   user: User | null;
 }
 
-const Profile: React.FC<ProfileProps> = ({
-  name = "User",
-  size = 65,
-  user,
-}) => {
+const Profile: React.FC<ProfileProps> = ({ size = 65, user }) => {
   return (
     <div style={{ display: "flex", gap: "0", alignItems: "center" }}>
       <div
@@ -22,7 +17,7 @@ const Profile: React.FC<ProfileProps> = ({
           overflow: "hidden",
         }}
       >
-        {user ? (
+        {user && user.profilePic ? (
           <img
             src={user.profilePic}
             alt="Profile"
@@ -45,7 +40,7 @@ const Profile: React.FC<ProfileProps> = ({
         )}
       </div>
       <span style={{ fontSize: "1.2rem", fontWeight: 500, marginLeft: "10px" }}>
-        {user ? user.name : name}
+        {user ? user.name : "User"}
       </span>
     </div>
   );
