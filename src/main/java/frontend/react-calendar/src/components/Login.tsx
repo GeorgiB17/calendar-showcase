@@ -42,6 +42,7 @@ function Login({
         const errorText = await response.text();
         throw new Error(errorText || "Invalid username or password");
       }
+
       const responseData = await response.json();
       setUser(responseData);
       setEvents(responseData.createdEvents);

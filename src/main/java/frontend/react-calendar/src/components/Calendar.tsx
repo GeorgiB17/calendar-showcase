@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import type { Event } from "./Types";
+import EventBlock from "./EventBlock";
 
 type CalendarProps = {
   events: Event[];
@@ -11,6 +12,7 @@ function Calendar({ events }: Readonly<CalendarProps>) {
   const monday = new Date(currentDate);
   monday.setDate(monday.getDate() - ((currentDate.getDay() + 6) % 7));
   const today = new Date();
+  const eventTimes = events.map((event) => new Date(event.time));
 
   const monthNames = [
     "January",
@@ -105,7 +107,7 @@ function Calendar({ events }: Readonly<CalendarProps>) {
       >
         <thead>
           <tr>
-            <th></th>
+            <th> </th>
             {daysInWeek.map((day, index) => {
               const dateForDay = new Date(monday);
               dateForDay.setDate(dateForDay.getDate() + index);
@@ -114,11 +116,11 @@ function Calendar({ events }: Readonly<CalendarProps>) {
 
               return (
                 <th
+                  key={day}
                   style={{
                     textAlign: "center",
                     backgroundColor: isToday ? "lightblue" : "white",
                   }}
-                  key={day}
                 >
                   {day} {dateForDay.getDate()}
                 </th>
@@ -129,11 +131,23 @@ function Calendar({ events }: Readonly<CalendarProps>) {
             return (
               <tr key={hour + hourIndex}>
                 <td>{hour}</td>
+
                 {daysInWeek.map((day, index) => {
                   const dateForDay = new Date(monday);
                   dateForDay.setDate(dateForDay.getDate() + index);
                   const isToday =
                     dateForDay.toDateString() === today.toDateString();
+
+                  const matchedEvent = events.find((ev) => {
+                    const eventDate = new Date(ev.time);
+                    return (
+                      eventDate.toDateString() === dateForDay.toDateString()
+                    );
+                  });
+
+                  const eventBlock = matchedEvent ? (
+                    <EventBlock event={matchedEvent} />
+                  ) : null;
 
                   return (
                     <td
@@ -141,7 +155,9 @@ function Calendar({ events }: Readonly<CalendarProps>) {
                       style={{
                         backgroundColor: isToday ? "lightblue" : "white",
                       }}
-                    ></td>
+                    >
+                      {matchedEvent ? eventBlock : ""}
+                    </td>
                   );
                 })}
               </tr>

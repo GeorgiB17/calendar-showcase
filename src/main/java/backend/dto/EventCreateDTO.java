@@ -8,16 +8,18 @@ public class EventCreateDTO {
      private LocalDateTime time;
        private String location;
        private long creatorID;
+       private String duration;
 
 
 public EventCreateDTO() {}
 
-    public EventCreateDTO(String title, String description, LocalDateTime time, String location, long creatorID) {
+    public EventCreateDTO(String title, String description, LocalDateTime time, String location, long creatorID, String duration) {
         this.title = title;
         this.description = description;
         this.time = time;
         this.location = location;
         this.creatorID = creatorID;
+        this.duration = duration;
     }
 
     public String getTitle() {
@@ -58,5 +60,12 @@ public EventCreateDTO() {}
 
     public void setCreatorID(long creatorID) {
         this.creatorID = creatorID;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }

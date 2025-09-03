@@ -20,7 +20,7 @@ function Nav({ onOpenModal, user }: Readonly<NavProps>) {
         borderBottom: "1px solid #e5e5e5",
         margin: 0,
         boxSizing: "border-box",
-        zIndex: 1000, // big number:)
+        zIndex: 1000,
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",

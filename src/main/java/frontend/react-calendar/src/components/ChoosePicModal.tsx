@@ -1,5 +1,8 @@
+import "../css/app.css";
+
 type ChoosePicModal = {
   onClose: () => void;
+  setProfilePic?: (pic: string) => void;
 };
 
 function ChoosePicModal({ onClose }: Readonly<ChoosePicModal>) {
