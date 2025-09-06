@@ -12,7 +12,7 @@ function Calendar({ events }: Readonly<CalendarProps>) {
   const monday = new Date(currentDate);
   monday.setDate(monday.getDate() - ((currentDate.getDay() + 6) % 7));
   const today = new Date();
-  const eventTimes = events.map((event) => new Date(event.time));
+  const [eventHour, setEventHour] = useState("60");
 
   const monthNames = [
     "January",
@@ -140,6 +140,7 @@ function Calendar({ events }: Readonly<CalendarProps>) {
 
                   const matchedEvent = events.find((ev) => {
                     const eventDate = new Date(ev.time);
+
                     return (
                       eventDate.toDateString() === dateForDay.toDateString()
                     );

@@ -3,7 +3,7 @@ import "../css/app.css";
 import LoadingModal from "./LoadingModal";
 import ErrorModal from "./ErrorModal";
 import SuccessModal from "./SuccessModal";
-import type { User } from "./Types";
+import type { User, Event } from "./Types";
 
 type CreateEventModalProps = {
   onClose: () => void;
@@ -26,15 +26,18 @@ export default function CreateEventModal({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    console.log("Duration:", duration);
+
     const newEvent = {
+      participants: [],
       creatorID: user.id,
       title,
       time: `${date}T${time}:00`,
       duration,
       description,
-      participants: [],
       location: "Sofia",
-    };
+    } as Event;
+
     try {
       const response = await fetch("http://localhost:5003/api/events/create", {
         method: "POST",
@@ -173,3 +176,4 @@ export default function CreateEventModal({
     </>
   );
 }
+///////////////////////////////////////TODO: zashto nqma duration be bate?

@@ -3,6 +3,7 @@ import SuccessModal from "./SuccessModal";
 import ErrorModal from "./ErrorModal";
 import LoadingModal from "./LoadingModal";
 import { useState } from "react";
+import type { User } from "./Types";
 
 type RegisterProps = {
   toggleRegister: () => void;
@@ -25,7 +26,7 @@ function Register({ toggleRegister }: Readonly<RegisterProps>) {
       email,
       password,
       createdEvents: [],
-    };
+    } as User;
     try {
       const response = await fetch("http://localhost:5003/api/users/register", {
         method: "POST",

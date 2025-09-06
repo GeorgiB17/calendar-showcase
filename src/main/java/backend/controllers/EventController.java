@@ -55,7 +55,7 @@ public class EventController {
         }
         
         EventEntity event = new EventEntity();
-        System.out.println(dto.getCreatorID());
+        
         UserEntity creator = userService.findUserById(dto.getCreatorID())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid creator ID"));
         
@@ -66,6 +66,7 @@ public class EventController {
         event.setTime(dto.getTime());
         event.setLocation(dto.getLocation());
         event.setCreator(creator);
+        event.setDuration(dto.getDuration());
         eventService.saveEvent(event);
         
         return ResponseEntity.ok("Event created successfully!");
