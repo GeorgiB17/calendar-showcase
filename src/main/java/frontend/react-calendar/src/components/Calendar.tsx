@@ -12,7 +12,7 @@ function Calendar({ events }: Readonly<CalendarProps>) {
   const monday = new Date(currentDate);
   monday.setDate(monday.getDate() - ((currentDate.getDay() + 6) % 7));
   const today = new Date();
-  const [eventHour, setEventHour] = useState("60");
+  //  const [eventHour, setEventHour] = useState("60");
 
   const monthNames = [
     "January",

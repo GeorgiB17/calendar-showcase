@@ -9,9 +9,9 @@ import type { Event, User } from "./components/Types";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showCreateEventModal, setShowCreateEventModal] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
-  const toggleModal = () => setShowModal((prev) => !prev);
+  const toggleModal = () => setShowCreateEventModal((prev) => !prev);
   const toggleRegister = () => setShowRegister((prev) => !prev);
   const toggleIsLoggedIn = () => setIsLoggedIn((prev) => !prev);
   const [events, setEvents] = useState<Event[]>([]);
@@ -20,8 +20,14 @@ function App() {
   if (isLoggedIn) {
     return (
       <div className="app-background">
-        <Nav onOpenModal={() => setShowModal(true)} user={user} />
-        {showModal && <CreateEventModal onClose={toggleModal} user={user!} />}
+        <Nav onOpenModal={() => setShowCreateEventModal(true)} user={user} />
+        {showCreateEventModal && (
+          <CreateEventModal
+            onClose={toggleModal}
+            user={user!}
+            updateEvents={setEvents}
+          />
+        )}
         <div style={{ marginTop: "100px" }}>
           <Calendar events={events} />
         </div>

@@ -8,11 +8,13 @@ import type { User, Event } from "./Types";
 type CreateEventModalProps = {
   onClose: () => void;
   user: User;
+  updateEvents: (events: Event[]) => void;
 };
 
 export default function CreateEventModal({
   onClose,
   user,
+  updateEvents,
 }: Readonly<CreateEventModalProps>) {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
@@ -50,7 +52,21 @@ export default function CreateEventModal({
         const errorText = await response.text();
         throw new Error(errorText || "Failed to create event");
       }
-      console.log("Event submitted:", newEvent);
+
+      const userResponse = await fetch(
+        "http://localhost:5003/api/users/" + user.id,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (userResponse.ok) {
+        const userData = await userResponse.json();
+        updateEvents(userData.createdEvents);
+      }
+
       setIsSuccess(true);
     } catch (error) {
       console.error(error);
@@ -176,4 +192,3 @@ export default function CreateEventModal({
     </>
   );
 }
-///////////////////////////////////////TODO: zashto nqma duration be bate?
