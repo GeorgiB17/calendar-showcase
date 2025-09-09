@@ -12,7 +12,7 @@ function Calendar({ events }: Readonly<CalendarProps>) {
   const monday = new Date(currentDate);
   monday.setDate(monday.getDate() - ((currentDate.getDay() + 6) % 7));
   const today = new Date();
-  //  const [eventHour, setEventHour] = useState("60");
+    
 
   const monthNames = [
     "January",
@@ -131,20 +131,25 @@ function Calendar({ events }: Readonly<CalendarProps>) {
             return (
               <tr key={hour + hourIndex}>
                 <td>{hour}</td>
-
+                
                 {daysInWeek.map((day, index) => {
                   const dateForDay = new Date(monday);
                   dateForDay.setDate(dateForDay.getDate() + index);
+                  
                   const isToday =
                     dateForDay.toDateString() === today.toDateString();
-
+                   
+                  let eventDate = new Date();
                   const matchedEvent = events.find((ev) => {
-                    const eventDate = new Date(ev.time);
-
+                    const evDate = new Date(ev.time);
+                    eventDate = evDate;
+                  
                     return (
-                      eventDate.toDateString() === dateForDay.toDateString()
+                      evDate.toDateString() === dateForDay.toDateString()
                     );
                   });
+                  
+                  
 
                   const eventBlock = matchedEvent ? (
                     <EventBlock event={matchedEvent} />
@@ -157,7 +162,7 @@ function Calendar({ events }: Readonly<CalendarProps>) {
                         backgroundColor: isToday ? "lightblue" : "white",
                       }}
                     >
-                      {matchedEvent ? eventBlock : ""}
+                      {matchedEvent && eventDate.getHours().toString().padStart(2, "0").concat(":00") === hour ? eventBlock : ""}
                     </td>
                   );
                 })}
