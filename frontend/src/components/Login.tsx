@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../css/app.css";
+import "../css/App.css";
 import LoadingModal from "./LoadingModal";
 import ErrorModal from "./ErrorModal";
 import type { User, Event } from "./Types";

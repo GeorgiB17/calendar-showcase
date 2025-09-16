@@ -1,4 +1,4 @@
-package backend.services;
+package services;
 
 
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import backend.entities.EventEntity;
-import backend.entities.UserEntity;
-import backend.repositories.EventRepository;
+import entities.EventEntity;
+import entities.UserEntity;
+import repositories.EventRepository;
 
 @Service
 public class EventService {

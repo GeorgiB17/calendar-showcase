@@ -1,4 +1,4 @@
-package backend.configs;
+package configs;
 
 import java.util.List;
 

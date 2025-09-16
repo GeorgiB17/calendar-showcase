@@ -1,4 +1,4 @@
-package backend.entities;
+package entities;
 
 import java.time.LocalDateTime;
 import java.util.Set;

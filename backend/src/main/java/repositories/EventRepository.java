@@ -1,12 +1,12 @@
-package backend.repositories;
+package repositories;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import backend.entities.EventEntity;
-import backend.entities.UserEntity;
+import entities.EventEntity;
+import entities.UserEntity;
 
 @Repository
 public interface EventRepository extends JpaRepository<EventEntity, Long> {

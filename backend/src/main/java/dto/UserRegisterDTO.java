@@ -1,4 +1,4 @@
-package backend.dto;
+package dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = false)
