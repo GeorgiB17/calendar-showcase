@@ -1,5 +1,9 @@
 # 📅 Calendar Showcase
 
+
+  ❗❗❗ NOW DEPLOYED AT https://georgi-calendar.onrender.com/  ❗❗❗
+
+
 A modern calendar web application for planning and sharing events.  
 This is the public showcase version of my private calendar app — built to demonstrate the design, functionality, and clean user experience.
 
