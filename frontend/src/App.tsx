@@ -1,5 +1,5 @@
 import Nav from "./components/Nav";
-import "./css/App.css";
+import "./css/app.css";
 import Calendar from "./components/Calendar";
 import CreateEventModal from "./components/CreateEventModal";
 import { useState } from "react";
