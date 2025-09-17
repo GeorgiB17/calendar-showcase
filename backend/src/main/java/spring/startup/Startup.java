@@ -1,10 +1,10 @@
-package startup;
+package spring.startup;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import entities.UserEntity;
-import repositories.UserRepository;
+import spring.entities.UserEntity;
+import spring.repositories.UserRepository;
 @Component
 public class Startup implements CommandLineRunner {
 

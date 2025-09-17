@@ -1,4 +1,4 @@
-package services;
+package spring.services;
 
 
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import entities.UserEntity;
-import repositories.UserRepository;
+import spring.entities.UserEntity;
+import spring.repositories.UserRepository;
 
 
 @Service

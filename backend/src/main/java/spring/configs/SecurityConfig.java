@@ -1,4 +1,4 @@
-package configs;
+package spring.configs;
 
 import java.util.List;
 
@@ -14,15 +14,15 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 public class SecurityConfig {
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-            .csrf(csrf -> csrf.disable())
-            .cors(cors -> {})
-            .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll()  // Allow ALL requests without auth
-            )
-            .build();
-    }
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    return http
+        .csrf(csrf -> csrf.disable())
+        .cors(cors -> {})
+        .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+        .httpBasic(httpBasic -> httpBasic.disable()) // <- disables basic auth
+        .formLogin(form -> form.disable())           // <- disables login form
+        .build();
+}
 
     @Bean
 public CorsConfigurationSource corsConfigurationSource() {

@@ -1,4 +1,4 @@
-package entities;
+package spring.entities;
 
 import java.util.HashSet;
 import java.util.Set;

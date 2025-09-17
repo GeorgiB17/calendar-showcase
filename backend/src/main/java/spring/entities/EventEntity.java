@@ -1,4 +1,4 @@
-package entities;
+package spring.entities;
 
 import java.time.LocalDateTime;
 import java.util.Set;

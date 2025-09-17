@@ -1,4 +1,4 @@
-package controllers;
+package spring.controllers;
 
 
 import java.nio.file.Files;
@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import dto.LoginDTO;
-import dto.UserRegisterDTO;
-import entities.UserEntity;
-import services.UserService;
+import spring.dto.LoginDTO;
+import spring.dto.UserRegisterDTO;
+import spring.entities.UserEntity;
+import spring.services.UserService;
 
 
 @RestController

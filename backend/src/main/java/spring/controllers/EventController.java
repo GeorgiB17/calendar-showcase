@@ -1,4 +1,4 @@
-package controllers;
+package spring.controllers;
 
 
 import java.util.List;
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dto.EventCreateDTO;
-import entities.EventEntity;
-import entities.UserEntity;
-import services.EventService;
-import services.UserService;
+import spring.dto.EventCreateDTO;
+import spring.entities.EventEntity;
+import spring.entities.UserEntity;
+import spring.services.EventService;
+import spring.services.UserService;
 
 
 @RestController
