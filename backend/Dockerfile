@@ -18,11 +18,11 @@ RUN ./mvnw dependency:go-offline -B
 # Copy source
 COPY src ./src
 
-# Package the app
-RUN ./mvnw clean package -DskipTests
+# Package the app and rename jar
+RUN ./mvnw clean package -DskipTests && cp target/*.jar app.jar
 
 # Expose Spring Boot’s default port
 EXPOSE 8080
 
 # Run the jar
-CMD ["java", "-jar", "target/*.jar"]
+CMD ["java", "-jar", "app.jar"]1
