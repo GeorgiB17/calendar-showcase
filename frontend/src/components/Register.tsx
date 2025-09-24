@@ -28,13 +28,16 @@ function Register({ toggleRegister }: Readonly<RegisterProps>) {
       createdEvents: [],
     } as User;
     try {
-      const response = await fetch("http://localhost:5003/api/users/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUser),
-      });
+      const response = await fetch(
+        "https://calendar-showcase.onrender.com/api/users/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        }
+      );
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(errorText || "Failed to register");

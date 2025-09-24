@@ -41,20 +41,23 @@ export default function CreateEventModal({
     } as Event;
 
     try {
-      const response = await fetch("http://localhost:5003/api/events/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newEvent),
-      });
+      const response = await fetch(
+        "https://calendar-showcase.onrender.com/api/events/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newEvent),
+        }
+      );
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(errorText || "Failed to create event");
       }
 
       const userResponse = await fetch(
-        "http://localhost:5003/api/users/" + user.id,
+        "https://calendar-showcase.onrender.com/api/users/" + user.id,
         {
           method: "GET",
           headers: {
