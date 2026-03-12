@@ -30,7 +30,7 @@ function Login({
       password,
     };
     try {
-      const url = `https://calendar-showcase.onrender.com/api/users/login`;
+      const url = `https://calendar-backend-x8ns.onrender.com/api/users/login`;
       const response = await fetch(url, {
         method: "POST",
         headers: {
