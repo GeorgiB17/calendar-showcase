@@ -57,7 +57,7 @@ export default function CreateEventModal({
       }
 
       const userResponse = await fetch(
-        "https://calendar-showcase.onrender.com/api/users/" + user.id,
+        "https://calendar-backend-x8ns.onrender.com/api/users/" + user.id,
         {
           method: "GET",
           headers: {
