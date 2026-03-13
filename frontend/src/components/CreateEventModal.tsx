@@ -42,7 +42,7 @@ export default function CreateEventModal({
 
     try {
       const response = await fetch(
-        "https://calendar-showcase.onrender.com/api/events/create",
+        "https://calendar-backend-x8ns.onrender.com/api/events/create",
         {
           method: "POST",
           headers: {

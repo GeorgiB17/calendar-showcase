@@ -29,7 +29,7 @@ function Register({ toggleRegister }: Readonly<RegisterProps>) {
     } as User;
     try {
       const response = await fetch(
-        "https://calendar-showcase.onrender.com/api/users/register",
+        "https://calendar-backend-x8ns.onrender.com/api/users/register",
         {
           method: "POST",
           headers: {
