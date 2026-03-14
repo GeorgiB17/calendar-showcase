@@ -16,10 +16,25 @@ This is the public showcase version of my private calendar app — built to demo
 - 🔐 Login and registration system with profile pictures  
 
 ---
-
 ## 🚀 Tech Stack
 - **Frontend:** React with TypeScript
 - **Backend:** Spring Boot (REST API)  
 - **Database:** PostgreSQL
+- ## Testing
+
+Backend:
+- Unit tests with JUnit
+- API endpoint tests using MockMvc
+
+Frontend:
+- End-to-end testing with Playwright
+
+Run tests:
+
+Backend:
+./mvnw test
+
+Frontend:
+npx playwright test
 
 
